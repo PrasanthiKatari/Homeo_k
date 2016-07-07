@@ -1,0 +1,41 @@
+[
+  {
+    "ParentType":"MySelf"
+  },
+  {
+    "ParentType":"Father"
+  },
+  {
+    "ParentType":"Mother"
+  },
+  {
+    "ParentType":"Brother"
+  },
+  {
+    "ParentType":"Sister"
+  },
+  {
+    "ParentType":"Grandfather(Father's side)"
+  },
+  {
+    "ParentType":"Grandmother(Father's side)"
+  },
+  {
+    "ParentType":"Grandfather(Mother's side)"
+  },
+  {
+    "ParentType":"Grandmother(Mother's side)"
+  },
+  {
+    "ParentType":"Uncle(Father's Side)"
+  },
+  {
+    "ParentType":"Aunt(Father's Side)"
+  },
+  {
+    "ParentType":"Uncle(Mother's Side)"
+  },
+  {
+    "ParentType":"Aunt(Mother's Side)"
+  }
+]

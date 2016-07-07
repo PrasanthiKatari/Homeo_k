@@ -1,0 +1,25 @@
+{
+  "name": "Homeo",
+  "authors": [
+    "PrasanthiKatari <prasanthi.katari88@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modalmddatepicker": "modal-md-datepicker#^1.0.13",
+    "angular-ui-router": "ui-router#~0.3.1",
+    "angular-ui-grid": "ui-grid#~3.2.1"
+  },
+  "resolutions": {
+    "angular": "~1.2.0"
+  }
+}

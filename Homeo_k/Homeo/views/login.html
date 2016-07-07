@@ -1,0 +1,13 @@
+<div id="login-container">
+    <form ng-submit="submit()">
+        <fieldset><center>
+        <label> Username:</label> <input type="text" name="user" ng-model="user" />
+            <br><br>
+            <label>Password:</label> <input type="password" name="pass" ng-model="pass" />
+            <br><br>
+            <button type="submit" ng-disabled="loading">submit</button>
+            </center>
+        </fieldset>
+    </form>
+    <a href="" ng-click="doGoogleAuthWithPopup()">Login with Google</a><br/>
+</div>

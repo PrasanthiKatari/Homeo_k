@@ -1,0 +1,146 @@
+<html ng-app="myyapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>homepage</title>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.min.js"></script>
+           <script>
+               if (!window.jQuery.ui) {
+                                           document.write('<script src="js/libs/lodash.min.js"><\/script>');
+                                      }
+           </script>
+
+
+    <script type="text/javascript" src="sample.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        // create angular app
+        var validationApp = angular.module('validationApp', ['UserValidation']);
+        // create angular controller
+        validationApp.controller('mainController', function($scope) {
+
+            angular.module('app', []).
+                    directive('showErrors', function() {
+                        return {
+                            restrict: 'A',
+                            require:  '^form',
+                            link: function (scope, el, attrs, formCtrl) {
+                                // find the text box element, which has the 'name' attribute
+                                var inputEl   = el[0].querySelector("[name]");
+                                // convert the native text box element to an angular element
+                                var inputNgEl = angular.element(inputEl);
+                                // get the name on the text box so we know the property to check
+                                // on the form controller
+                                var inputName = inputNgEl.attr('name');
+
+                                // only apply the has-error class after the user leaves the text box
+                                inputNgEl.bind('blur', function() {
+                                    el.toggleClass('has-error', formCtrl[inputName].$invalid);
+                                });
+                                scope.$on('show-errors-check-validity', function() {
+                                    el.toggleClass('has-error', formCtrl[inputName].$invalid);
+                                });
+                            }
+                        }
+                    });
+
+            $scope.save = function () {
+                $scope.$broadcast('show-errors-check-validity');
+                if ($scope.userForm.$valid) {
+                    alert('User saved');
+                    $scope.reset();
+                } else {
+                    alert("There are invalid fields");
+                }
+            };
+
+            $scope.reset = function () {
+                $scope.user =
+                {problem: ''};
+                scope.$on('show-errors-reset', function() {
+                    $timeout(function() {
+                        el.removeClass('has-error');
+                    }, 0, false);
+                });
+            }
+
+        });
+    </script>
+</head>
+
+<body ng-controller="myycontroller">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+           <h3><center>Patient Related Parents description</center></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br><br>
+         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <h5><center>Select the Disease</center></h5>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <h5><center>Enter Description</center></h5>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div ng-dropdown-multiselect="" options="example9data" selected-model="example9model" extra-settings="example9settings" checkboxes="true"></div>
+            </div>
+            <div class="row">
+                <div>{{example9model}}</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div ng-app="validationApp">
+                    <div class="container">
+                        <div class="col-sm-12">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <form name="userForm"  ng-submit="submitForm(userForm.$valid)" novalidate>
+                                        <!--PROBLEM-->
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <input type="text" name="description" class="form-control" ng-model="user.description"  ng-maxlength="100" placeholder="Enter  Description" required/>
+                            <span style="color:red" ng-show="userForm.description.$invalid && !userForm.description.$pristine">
+                                 <span ng-show="userForm.description.$error.required">Your Problem is required</span>
+                                <span  ng-show="userForm.descriptiondescription.$error.maxlength">Text must be not exceed 100 characters</span>
+                            </span>
+                                        </div>
+                                        <!--SUBMIT-->
+                                        <button type="submit" class="btn btn-primary"  ng-click="save()">Submit</button>
+                                        <button type="reset" class="btn btn-primary" ng-click="reset()">Reset</button>
+                                    </form>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+
+
+
+</div>
+</html>

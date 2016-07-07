@@ -1,0 +1,30 @@
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12"><br></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12"><br><br><br></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                            <b><u>New Registration</u></b><br><br>
+                            <form align="left" >
+                                First Name :  <input type="text" ng-model="firstname" /><br><br>
+                                Last Name  :  <input type="text" ng-model="lastname"><br><br>
+                                Date of Birth :  <input type="text" ng-model="dateofbirth"><br><br>
+                                <input type="radio" name="answer" value="Female" ng-model="answers.gender" />Female
+                                <input type="radio" name="answer" value="Male" ng-model="answers.gender" />Male
+                                Designation  :  <input type="text" ng-model="designation"><br><br>
+                                Address  :  <input type="text" ng-model="address"><br><br>
+                                Mobile  :  <input type="mobile" ng-model="mobile"><br><br>
+                                E-mail  :  <input type="email" ng-model="email"><br><br>
+                                Password:  <input type="password" ng-model="password" /><br><br>
+                                ReEnter-Password:  <input type="password" ng-model="password" /><br><br>
+                                <input type="button" ng-submit ="signup()" value="Sign UP"/>
+                            </form>
+                </div>
+            </div>
+
+        </div>

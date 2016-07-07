@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', []);
+
+        myApp.directive("datepicker", function () {
+            return {
+                restrict: "A",
+                require: "ngModel",
+                link: function (scope, elem, attrs, ngModelCtrl) {
+                    var updateModel = function (dateText) {
+                        scope.$apply(function () {
+                            ngModelCtrl.$setViewValue(dateText);
+                        });
+                    };
+                    var options = {
+                        dateFormat: "dd/mm/yy",
+                        onSelect: function (dateText) {
+                            updateModel(dateText);
+                        }
+                    };
+                    elem.datepicker(options);
+                }
+            }
+        });
+    </script>
+    <style>
+        #wrapper {
+            font: 20px Calibri;
+            width: 100px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper" ng-app="myApp">
+    <p>{{datePicker || "00/00/0000"}}</p>
+    <input type="text" ng-model="datePicker" datepicker />
+    <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+          </span>
+</div>
+</body>
+</html>
